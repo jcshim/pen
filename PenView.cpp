@@ -145,10 +145,6 @@ void CPenView::OnMenuColor()
 		Col = dlg.GetColor();
 	}
 }
-
-
-
-
 void CPenView::OnSize(UINT sel)
 {
 	// TODO: 여기에 구현 코드 추가.
