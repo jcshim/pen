@@ -159,3 +159,10 @@ CLine* CPenDoc::GetLine(int n)
 	
 	return (CLine *)m_oa[n];;
 }
+
+
+int CPenDoc::GetSize()
+{
+	// TODO: 여기에 구현 코드 추가.
+	return m_oa.GetSize();
+}

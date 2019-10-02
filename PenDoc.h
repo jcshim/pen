@@ -48,4 +48,5 @@ protected:
 public:
 	CLine* Add(CLine* p);
 	CLine* GetLine(int n);
+	int GetSize();
 };
