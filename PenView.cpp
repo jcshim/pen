@@ -63,12 +63,12 @@ void CPenView::OnDraw(CDC* pDC)
 
 	// TODO: 여기에 원시 데이터에 대한 그리기 코드를 추가합니다.
 	int n = pDoc->m_oa.GetSize();
-	CLine* p;
-
-
-	for (int i = 0; i < n; i++) {
-		p = (CLine*)pDoc->m_oa[i];
-		p->Draw(pDC);
+	if(n>0){
+		CLine* p;
+		for (int i = 0; i < n; i++) {
+			p = pDoc->GetLine(i);
+			p->Draw(pDC);
+		}
 	}
 }
 
@@ -130,7 +130,7 @@ void CPenView::OnMouseMove(UINT nFlags, CPoint point)
 	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 	if (nFlags == MK_LBUTTON) {
 		CLine* p = new CLine(Pnt, point, Size, Col);
-		GetDocument()->m_oa.Add(p);
+		GetDocument()->Add(p);
 		Invalidate(false);
 	}
 	Pnt = point;

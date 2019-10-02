@@ -133,3 +133,29 @@ void CPenDoc::Dump(CDumpContext& dc) const
 
 
 // CPenDoc 명령
+
+
+CLine* CPenDoc::Add(CLine* p)
+{
+	try {
+		m_oa.Add(p);
+		SetModifiedFlag();
+	}
+	catch(CMemoryException * perr)
+	{
+		AfxMessageBox(L"Memory Error", MB_ICONSTOP | MB_OK);
+		if (p) {
+			delete p;
+			p = NULL;
+		}
+		perr->Delete();
+	}	return p;
+}
+
+
+CLine* CPenDoc::GetLine(int n)
+{
+	// TODO: 여기에 구현 코드 추가.
+	
+	return (CLine *)m_oa[n];;
+}
