@@ -30,6 +30,7 @@ BEGIN_MESSAGE_MAP(CPenView, CView)
 	ON_WM_MOUSEMOVE()
 	ON_COMMAND(ID_MENU_COLOR, &CPenView::OnMenuColor)
 	ON_COMMAND_RANGE(ID_SIZE_1,ID_SIZE_32, OnSize)
+	ON_WM_CONTEXTMENU()
 END_MESSAGE_MAP()
 
 // CPenView 생성/소멸
@@ -147,7 +148,16 @@ void CPenView::OnMenuColor()
 }
 void CPenView::OnSize(UINT sel)
 {
-	// TODO: 여기에 구현 코드 추가.
-	Size = sel - ID_SIZE_1+1;
-	Size *= 8;
+	// ID_SIZE_1부터 차례로 값이 1씩 증가 됨
+	int s[] = { 1,8,16,32 };
+	Size = s[sel - ID_SIZE_1];
+}
+
+
+void CPenView::OnContextMenu(CWnd* /*pWnd*/, CPoint point)
+{
+	CMenu m;
+	m.LoadMenu(IDR_MAINFRAME);
+	CMenu* p = m.GetSubMenu(4);
+	p->TrackPopupMenu(NULL, point.x, point.y, this, NULL);	
 }
